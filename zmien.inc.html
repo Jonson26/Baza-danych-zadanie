@@ -1,0 +1,21 @@
+<form action="index.php?id=zmien" method="post">
+Nazwisko: <input type="text" name="name"><br>
+<input type="submit">
+</form>
+
+<?php
+    $sql = "SELECT * FROM Osoby WHERE nazwisko='".$_POST["name"]."'";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        echo '<table style="border: 1px solid black">';
+        while($row = $result->fetch_assoc()) {
+            echo '<tr style="border: 1px solid black"> <th style="border: 1px solid black">'. $row["id"]. '</th> <th style="border: 1px solid black">'. $row["imie"]. '</th> <th style="border: 1px solid black">' . $row["nazwisko"] . '</th><th style="border: 1px solid black">' . $row["miejsce_urodzenia"] . '</th><th style="border: 1px solid black">' . $row["data"] . '</th><th style="border: 1px solid black">' . $row["wiek"] . '</th></tr>';
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    
+    $conn->close();
+?>

@@ -1,0 +1,16 @@
+<?php
+    $sql = "SELECT * FROM `Osoby` WHERE id>29 and id<61 order by nazwisko";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        echo '<table style="border: 1px solid black">';
+        while($row = $result->fetch_assoc()) {
+            echo '<tr style="border: 1px solid black"> <th style="border: 1px solid black">'. $row["id"]. '</th> <th style="border: 1px solid black">'. $row["imie"]. '</th> <th style="border: 1px solid black">' . $row["nazwisko"] . '</th></tr>';
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    
+    $conn->close();
+?>
